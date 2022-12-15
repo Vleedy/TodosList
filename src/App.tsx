@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Paper from '@mui/material/Paper';
+import { ToDoTabs } from './components/ToDoTabs';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Paper 
+      sx={{width: '800px', height: '600px', padding: '5px 20px',
+      '@media (max-width: 640px)': {width: '90%', height: '90vh', overflowY: 'scroll', paddingRight:'10px', paddingLeft:'10px'}
+      }}>
+        <ToDoTabs/>
+      </Paper>
     </div>
   );
 }

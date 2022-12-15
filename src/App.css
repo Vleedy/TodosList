@@ -1,38 +1,195 @@
 .App {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.addToDo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 370px;
+}
+
+.addToDo__input {
+  width: 50%;
+  margin-left: 20px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+.random-ToDo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 290px;
+  margin-top: 30px;
+}
+
+h5 {
+  font-size: '14px';
+  font-weight: 300;
+  color: #1976d2;
+  margin: 0px;
+}
+
+h5 span {
+  font-weight: 500;
+  color: #1976d2;
+}
+
+h4 {
+  font-size: '16px';
+  font-weight: 300;
+  color: black;
+  margin: 0px;
+  width: 270px;
+  word-wrap: break-word;
+  line-height: 1.2em;
+  margin-bottom: 4px;
+}
+
+.myToDos-Tab{
+  border: solid 1px rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  display: flex; 
+  justify-content: space-between;
+} 
+
+.todoItem__wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.myTodos{
+  width: 50%;
+  margin: 10px auto;
+  padding: 5px;
+  height: 480px;
+  overflow: auto;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+
+.search{
+  margin-top: 10px;
+  width: 43%;
+  margin-right: 15px;
+}
+
+.search__input{
+  border: solid 1px rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.search__buttons{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} 
+
+.todoItem{
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.noToDo{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-top: 100px;
+  width: 80%;
+  margin: 100px auto;
+  border: 3px solid #1976d2;
+  border-radius: 15px;
+}
+
+.noToDo h2{
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: 400;
+  color: #1976d2;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (max-width: 850px) {
+  .myToDos-Tab{
+    flex-direction: column-reverse;
+  }
+  .myTodos{
+    width: 96%;
+    height: 415px;
+  }
+  .search{
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+    margin: 10px auto;
+  }
+  .search__buttons{
+    margin-top: 0px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 640px) {
+  .myToDos-Tab{
+    height: 78vh;
   }
-  to {
-    transform: rotate(360deg);
+  .search{
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+  .search__buttons{
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .myTodos{
+    margin-top: 0px;
+    border: none;
+    height: 70vh;
+  }
+  .todoItem{
+    font-size: 14px;
+  }
+  .addToDo{
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+  .addToDo__input{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 0px;
+  }
+  h3{
+    font-size: 16px;
+    margin: 5px 0px;
+  }
+}
+
+@media (max-width: 440px) {
+  .search__buttons{
+    justify-content: space-between;
+  }
+  .todoItem__text{
+    width: 90%;
   }
 }
