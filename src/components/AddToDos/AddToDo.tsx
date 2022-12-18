@@ -4,30 +4,48 @@ import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {DateTab} from './DateBlock';
-import { useAppDispatch } from '../hooks/redux';
-import { toDoSlice } from '../store/reducers/ToDoReducer';
-import { MYDATE } from '../models/MYDATE';
-import { fetchToDo } from '../store/reducers/FetchToDo';
-
+import { useAppDispatch } from '../../hooks/redux';
+import { toDoSlice } from '../../store/reducers/ToDoReducer';
+import { MYDATE } from '../../models/MYDATE';
+import { fetchToDo } from '../../store/reducers/FetchToDo';
+import {AlertDialogSucces} from '../Alerts/AlertDialogSucces';
+import { AlertDialogError } from '../Alerts/AlertDialogError';
+import LoadingBackDrop from '../Alerts/LoadingBackDrop';
 
 const AddToDo: FC = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState< MYDATE | null>(null);
+    const [openModal, setOpenModal] = useState(false);
+
+ 
 
     const dispatch = useAppDispatch();
     const {todosAdding} = toDoSlice.actions;
 
+    
+    const resetInfoAndOpenModal = () => {
+        setName('');
+        setDescription('');
+        setDate(null);
+        setOpenModal(true);
+      };
+    
     const onClickAddToDoBtn = () => {
         dispatch(todosAdding({name, description, date: date && `${date.$D}.${date.$M}.${date.$y}`, completed: false}));
+        resetInfoAndOpenModal();
     }
 
     const onClickAddRandomToDo = () => {
         dispatch(fetchToDo());
     }
-
+    
+  
     return (
         <>
+            {openModal&&<AlertDialogSucces openModal={openModal} setOpenModal={setOpenModal}/>}
+            {<LoadingBackDrop/>}
+            {<AlertDialogError/>}
             <Box sx={{ border: 1, borderColor: 'divider', borderRadius: '3px', '@media (max-width: 415px)': {border: 'none'}}}>
                 <div className='addToDo'>
                     <div className='addToDo__input'>

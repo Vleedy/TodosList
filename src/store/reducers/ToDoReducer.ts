@@ -30,14 +30,17 @@ export const toDoSlice = createSlice({
             state.todos[action.payload.id].completed = action.payload.succes;
         },
         deleteToDo(state, action: PayloadAction<number>) {
-            state.todos = state.todos.filter((item, i) => i!==action.payload)
+            state.todos = state.todos.filter((_, i) => i!==action.payload)
+        },
+        clearError(state) {
+            state.error = ''
         }
     },
     extraReducers: {
         [fetchToDo.fulfilled.type]: (state, action: PayloadAction<TODO[]>) => {
             state.isLoading = false;
             state.error = '';
-            state.todos = [...state.todos, ...action.payload]
+            state.todos = [...state.todos, ...action.payload];
         },
         [fetchToDo.pending.type]: (state) => {
             state.isLoading = true;

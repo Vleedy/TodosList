@@ -19,7 +19,7 @@ const SearchBlock: FC<SearchProps> = ({buttonVariant, setButtonVariant, searchVa
               <SearchIcon sx={{paddingTop: '8px', paddingLeft: '5px'}} color='primary'/>
             </div>
             <InputBase
-                sx={{paddingLeft: '5px'}}
+              sx={{paddingLeft: '5px'}}
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
               value={searchValue}

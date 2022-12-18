@@ -4,15 +4,17 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useAppSelector } from '../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SpeakerNotesOffIcon from '@mui/icons-material/SpeakerNotesOff';
-import filterToDo from '../service/filterFunction';
-import { useAppDispatch } from '../hooks/redux';
-import { toDoSlice } from '../store/reducers/ToDoReducer';
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
+import filterToDo from '../../service/filterFunction';
+import { useAppDispatch } from '../../hooks/redux';
+import { toDoSlice } from '../../store/reducers/ToDoReducer';
+
 
 interface Props {
   buttonVariant: string,
@@ -25,6 +27,7 @@ const ToDoItem: FC<Props> = ({buttonVariant, searchValue}) => {
     const dispatch = useAppDispatch();
     const {completeToDo} = toDoSlice.actions;
     const {deleteToDo} = toDoSlice.actions;
+    
 
     const onClickDone = (id:number, succes:boolean) => {
         dispatch(completeToDo({id, succes}));
@@ -34,6 +37,7 @@ const ToDoItem: FC<Props> = ({buttonVariant, searchValue}) => {
       dispatch(deleteToDo(id));
   }
 
+
   return (
     <div className='myTodos'>
         {todos.length<1?
@@ -42,7 +46,8 @@ const ToDoItem: FC<Props> = ({buttonVariant, searchValue}) => {
             <SpeakerNotesOffIcon color='primary' sx={{fontSize: '50px', marginTop: '15px'}}/> 
           </div>
          : 
-         filterToDo(todos, buttonVariant, searchValue)?.map((item, i)=>{
+         (filterToDo(todos, buttonVariant, searchValue).length>0?
+         filterToDo(todos, buttonVariant, searchValue).map((item, i)=>{
             return (
               <Accordion key={i} sx={{margin: '5px 10px'}}>
                 <AccordionSummary
@@ -75,7 +80,12 @@ const ToDoItem: FC<Props> = ({buttonVariant, searchValue}) => {
                 </AccordionDetails>
               </Accordion>
             )
-        })}
+        })
+        :
+        <div className='noToDo'>
+          <h2>По данному запросу ничего не найдено</h2>
+          <ContentPasteSearchIcon color='primary' sx={{fontSize: '50px', marginTop: '15px'}}/> 
+        </div>)}
     </div>
   );
 }

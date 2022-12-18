@@ -1,6 +1,6 @@
 import { TODO } from "../models/TODO"
 
-export default function filterToDo (array: TODO[], searchParametr: any, input: string) {
+export default function filterToDo (array: TODO[], searchParametr: any, input: string){
     switch (searchParametr) {
         case 'name': {
             return array.filter(item => {
@@ -22,6 +22,9 @@ export default function filterToDo (array: TODO[], searchParametr: any, input: s
                     return item 
                 }
             })
+        }
+        default: {
+            return array
         }
     }
 

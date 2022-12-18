@@ -1,21 +1,17 @@
 import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button';
+import { useAppSelector } from '../../hooks/redux';
 
 export default function LoadingBackDrop() {
-  const [open, setOpen] = React.useState(true);
 
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+  const {isLoading} = useAppSelector(state=>state.ToDoReducers);
 
   return (
     <div>
-      <Button onClick={handleToggle}>Show backdrop</Button>
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
+        open={isLoading}
       >
         <CircularProgress color="inherit" />
       </Backdrop>

@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { StaticDatePicker } from '@mui/x-date-pickers-pro';
-import { MYDATE } from '../models/MYDATE';
+import { MYDATE } from '../../models/MYDATE';
 
 
 interface DateProps {

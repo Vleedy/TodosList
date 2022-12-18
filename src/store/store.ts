@@ -16,10 +16,17 @@ import {
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['ToDoReducers']
+  }
+
+  const authPersistConfig = {
+    key: 'ToDoReducers',
+    storage: storage,
+    blacklist: ['error', 'isLoading']
   }
 
 const rootReducer = combineReducers({
-    ToDoReducers
+    ToDoReducers: persistReducer(authPersistConfig, ToDoReducers)
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
